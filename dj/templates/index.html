@@ -81,15 +81,13 @@
 		<header class="page1">
 			<div class="container_12">
 				<div class="grid_12">
-					<h1><a href="#" onClick="goToByScroll('page1'); return false;"><img src="images/logo.png" alt="Gerald Harris attorney at law"></a></h1>
+					<h1><a href="#" onClick="goToByScroll('page1'); return false;"><img src="{% static "images/logo.png" %}" alt="Gerald Harris attorney at law"></a></h1>
 					<div class="menu_block">
 						<nav class="">
 							<ul class="sf-menu">
-								<li class="current men"><a onClick="goToByScroll('page1'); return false;" href="#">Home </a> <strong class="hover"></strong></li>
-								<li class="men1"><a onClick="goToByScroll('page2'); return false;" href="#">About</a><strong class="hover"></strong></li>
-								<li class=" men2"><a onClick="goToByScroll('page3'); return false;" href="#">Services</a> <strong class="hover"></strong></li>
-								<li class=" men3"><a onClick="goToByScroll('page4'); return false;" href="#">Clients</a> <strong class="hover"></strong></li>
-								<li class=" men4"><a onClick="goToByScroll('page5'); return false;" href="#">Contacts</a> <strong class="hover"></strong></li>
+                                {% for link in links %}
+								<li class="{% if forloop.counter == 1 %}current men{% else %}men{{ forloop.counter0 }}{% endif %}"><a onClick="goToByScroll('page{{ forloop.counter }}'); return false;" href="#">{{ link.label }}</a> <strong class="hover"></strong></li>
+                                {% endfor %}
 							</ul>
 						</nav>
 						<div class="clear"></div>
@@ -105,31 +103,15 @@
 				<div class="grid_12">
 					<div class="slider_wrapper">
 						<ul class="items">
-							<li>
+                            {% for tag in tags %}
+                            <li>
 								<img src="{% static "images/spacer.gif" %}" alt="">
 								<div class="caption banner">
-									<h2>Let Us Show You the Way to Success</h2>
+									<h2>{{ tag.text }}</h2>
 								</div>
 							</li>
-							<li>
-								<img src="{% static "images/spacer.gif" %}" alt="">
-								<div class="caption banner">
-									<h2>Interminable Energy for Your Project</h2>
-								</div>
-							</li>
-							<li>
-								<img src="{% static "images/spacer.gif" %}" alt="">
-								<div class="caption banner">
-									<h2>We know how to solve your problems!</h2>
-								</div>
-							</li>
-							<li>
-								<img src="{% static "images/spacer.gif" %}" alt="">
-								<div class="caption banner">
-									<h2>Make your business a booming one!</h2>
-								</div>
-							</li>
-						</ul>
+                            {% endfor %}
+                        </ul>
 					</div>
 					<div class="socials">
 						<a href="#"></a>
@@ -152,7 +134,7 @@
 				</div>
 				<div class="grid_3">
 					<div class="box maxheight">
-						<img src="images/box_img1.jpg" alt="">
+						<img src="{% static "images/box_img1.jpg"%}" alt="">
 						<div class="text1"><a href="#">Laura Stegner</a></div>senior manager
 						<div class="socials1">
 							<a href="#"></a>
@@ -164,7 +146,7 @@
 				</div>
 				<div class="grid_3">
 					<div class="box maxheight">
-						<img src="images/box_img2.jpg" alt="">
+						<img src="{% static "images/box_img2.jpg"%}" alt="">
 						<div class="text1"><a href="#">Anton Stegner</a></div> manager
 						<div class="socials1">
 							<a href="#"></a>
@@ -176,7 +158,7 @@
 				</div>
 				<div class="grid_3">
 					<div class="box maxheight">
-						<img src="images/box_img3.jpg" alt="">
+						<img src="{% static "images/box_img3.jpg"%}" alt="">
 						<div class="text1"><a href="#">Lisa Haddon </a></div>accounter
 						<div class="socials1">
 							<a href="#"></a>
@@ -188,7 +170,7 @@
 				</div>
 				<div class="grid_3">
 					<div class="box maxheight">
-						<img src="images/box_img4.jpg" alt="">
+						<img src="{% static "images/box_img4.jpg"%}" alt="">
 						<div class="text1"><a href="#">Bradley Grosh</a></div>director
 						<div class="socials1">
 							<a href="#"></a>
@@ -212,26 +194,14 @@
 				</div>
 				<div class="grid_3">
 					<div class="box maxheight1">
-						<img src="images/box1_img1.png" alt="">
+						<img src="{% static "images/box1_img1.png"%}" alt="">
 						<div class="text1"><a href="#">Strategy</a></div>Vivamus at magna non nunc tristique rhoncus. Aliquam nibh ante, egestas id dictum a, commodo luctus libero.
 					</div>
 				</div>
 				<div class="grid_3">
 					<div class="box maxheight1">
-						<img src="images/box1_img2.png" alt="">
+						<img src="{% static "images/box1_img2.png"%}" alt="">
 						<div class="text1"><a href="#">Research</a></div>Ite auctor non pellentesque vel, aliquet sit amet erat. Nullam eget dignissim nisi, aliquam feugiat nibhh sagittis ut.
-					</div>
-				</div>
-				<div class="grid_3">
-					<div class="box maxheight1">
-						<img src="images/box1_img3.png" alt="">
-						<div class="text1"><a href="#">Development</a></div>Praesent faucibusamus ater asmagna non nunc tristique rhoncus. Aliquam nib ante, tas id dictum aluctus libero.
-					</div>
-				</div>
-				<div class="grid_3">
-					<div class="box maxheight1">
-						<img src="images/box1_img4.png" alt="">
-						<div class="text1"><a href="#">Consulting</a></div>Etiam dui eros na non nunc tristique rhoncus. Aliquam nibh ante, egestas id dictum a commodo luctus libero.
 					</div>
 				</div>
 			</div>
@@ -243,51 +213,8 @@
 				</div>
 				<div class="companies">
 					<div class="grid_3">
-						<img src="images/logo1.jpg" alt="">
+						<img src="{% static "images/logo1.jpg"%}" alt="">
 						<div class="text1">Company Name</div>Aliquam nibh ante, egestas id dictum  wrecommodo luctus liberoaesent.
-						<br>
-						<a href="#">Go to Site</a>
-					</div>
-					<div class="grid_3">
-						<img src="images/logo2.jpg" alt="">
-						<div class="text1">Company Name</div>Fusce adipiscing quam id risus gittis, non consequat lacus interdumoin.
-						<br>
-						<a href="#">Go to Site</a>
-					</div>
-					<div class="grid_3">
-						<img src="images/logo3.jpg" alt="">
-						<div class="text1">Company Name</div>Quisque viverra nulla nunc, eu ultrices wertlibero ultricies egetasellus um.
-						<br>
-						<a href="#">Go to Site</a>
-					</div>
-					<div class="grid_3">
-						<img src="images/logo4.jpg" alt="">
-						<div class="text1">Company Name</div>Courrewerwe abitur vel lorem sit amet ulla ullamcorper fermentumn vitae.
-						<br>
-						<a href="#">Go to Site</a>
-					</div>
-					<div class="clear"></div>
-					<div class="grid_3">
-						<img src="images/logo5.jpg" alt="">
-						<div class="text1">Company Name</div>Oiliquam nibh ante, egestas id dictum  wrecommodo luctus liberoaesente.
-						<br>
-						<a href="#">Go to Site</a>
-					</div>
-					<div class="grid_3">
-						<img src="images/logo6.jpg" alt="">
-						<div class="text1">Company Name</div>Gusce adipiscing quam id risus gittis, non consequat lacus interdumoiju.
-						<br>
-						<a href="#">Go to Site</a>
-					</div>
-					<div class="grid_3">
-						<img src="images/logo7.jpg" alt="">
-						<div class="text1">Company Name</div>Niuisque viverra nulla nunc, eu ultrices wertlibero ultricies egetasellus ol.
-						<br>
-						<a href="#">Go to Site</a>
-					</div>
-					<div class="grid_3">
-						<img src="images/logo8.jpg" alt="">
-						<div class="text1">Company Name</div>Fouerourrewerwe abitur vel lorem sit amet ulla ullamcorper fermentum.
 						<br>
 						<a href="#">Go to Site</a>
 					</div>

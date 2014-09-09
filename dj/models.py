@@ -19,12 +19,16 @@ def generate_filename(instance, old_filename):
 
 class MenuItem(models.Model):
     label = models.CharField("Значение", max_length=100)
-    url = models.CharField("Ссылка", max_length=255)
+    url = models.CharField("Заголовок", max_length=255, null=True)
     visible = models.BooleanField("Видимость", default=True)
+
+    def __str__(self):
+        return self.label
 
     class Meta:
         verbose_name = "Пункт меню"
         verbose_name_plural = "Пункты меню"
+
 
 # Model for tagline in the middle
 class Tagline(models.Model):
@@ -35,6 +39,8 @@ class Tagline(models.Model):
         verbose_name = "Слоган"
         verbose_name_plural = "Слоганы"
 
+    def __str__(self):
+        return self.text
 
 # Model for Team members
 class TeamMember(models.Model):
@@ -46,6 +52,9 @@ class TeamMember(models.Model):
     class Meta:
         verbose_name = "Член команды"
         verbose_name_plural = "Члены команды"
+
+    def __str__(self):
+        return self.name
 
 class SocialNetworkType(models.Model):
     # FACEBOOK = 'F'
@@ -64,6 +73,8 @@ class SocialNetworkType(models.Model):
     network_name = models.CharField("Название социальной сети", max_length=255)
     image = models.ImageField("Изображение", upload_to=generate_filename)
 
+    def __str__(self):
+        return self.network_name
 
     class Meta:
         verbose_name = "Социальная сеть"
@@ -76,6 +87,9 @@ class SocialNetworkLink(models.Model):
     url = models.CharField("Ссылка", max_length=255)
     visible = models.BooleanField("Видимость", default=True)
 
+    def __str__(self):
+        return self.member.name + '_' + self.network_type
+
     class Meta:
         verbose_name = "Ссылка на социальную сеть"
         verbose_name_plural = "Ссылки на социальную сеть"
@@ -86,6 +100,9 @@ class OurService(models.Model):
     description = models.TextField("Описание", name='description')
     image = models.ImageField("Изображение", upload_to=generate_filename)
     visible = models.BooleanField("Видимость", default=True)
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name = "Услуга"
@@ -98,6 +115,9 @@ class OurClient(models.Model):
     image = models.ImageField("Изображение", upload_to=generate_filename)
     url = models.CharField("Ссылка", max_length=255)
     visible = models.BooleanField("Видимость", default=True)
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name = "Клиент"
